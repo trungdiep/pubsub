@@ -14,7 +14,7 @@ class EventedRedis:
         self.channels.extend(channels)
         self.pub.subscribe(*self.channels)
 
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
+    def handle(self):
         while self.is_sub:
             message = self.pub.get_message()
             if message:
